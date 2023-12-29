@@ -15,8 +15,8 @@ jobs:
 
     - name: Run Jenkins Job
       run: |
-       CRUMB=$(curl -s 'http://18.207.154.63:8080/job/Jenkisn1/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
-       curl -X POST -H "$CRUMB" http://18.207.154.63:8080/job/Jenkisn1/your-job-name/build
+       CRUMB=$(curl -s 'http://18.207.154.63:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
+       curl -X POST -H "$CRUMB" http://18.207.154.63:8080/job/Jenkisn1/build
       env:
         JENKINS_USER: ${{ secrets.JENKINS_USER }}
         JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
