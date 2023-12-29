@@ -9,40 +9,24 @@ pipeline {
             }
         }
 
-        stage('Install Java Dependencies') {
+        stage('Build Frontend (Java)') {
             steps {
-                script {
-                    // Example using Maven for Java
-                    sh 'mvn clean install'
+                dir('frontend') {
+                    script {
+                        // Example Maven build for a Java-based frontend
+                        sh 'mvn clean install'
+                    }
                 }
             }
         }
 
-        stage('Install JavaScript Dependencies') {
+        stage('Build Backend (GoLang)') {
             steps {
-                script {
-                    // Example using npm for JavaScript
-                    sh 'npm install'
-                }
-            }
-        }
-
-        stage('Install GoLang Dependencies') {
-            steps {
-                script {
-                    // Example using go get for GoLang
-                    sh 'go get -v ./...'
-                }
-            }
-        }
-
-        stage('Build Project') {
-            steps {
-                script {
-                    // Example build commands for each language
-                    sh 'mvn package' // Java
-                    sh 'npm run build' // JavaScript
-                    sh 'go build' // GoLang
+                dir('backend') {
+                    script {
+                        // Example GoLang build
+                        sh 'go build -o myapp'
+                    }
                 }
             }
         }
