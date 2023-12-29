@@ -1,4 +1,4 @@
-name: Python CI
+name: Build and Test
 
 on:
   push:
@@ -7,9 +7,15 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install dependencies
-      run: echo "Hello, this line is printed during the workflow!"
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Run Jenkins Job
+      run: |
+        curl -X POST http://your-jenkins-server/job/your-job-name/build
+      env:
+        JENKINS_USER: ${{ secrets.JENKINS_USER }}
+        JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
