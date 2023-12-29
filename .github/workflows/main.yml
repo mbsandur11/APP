@@ -15,7 +15,7 @@ jobs:
 
     - name: Run Jenkins Job
       run: |
-        curl -X POST http://your-jenkins-server/job/your-job-name/build
+        curl -X POST http://18.207.154.63:8080/job/Jenkisn1/build
       env:
         JENKINS_USER: ${{ secrets.JENKINS_USER }}
         JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
